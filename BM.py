@@ -47,7 +47,7 @@ def get_solution(pattern, dataset, parameter):
 	return match
 
 #teks = "Apakah ada artikel yang dipublikasikan tentang Python yang dapat saya rujuk?"
-sub = " ".join(sys.argv[1:]) + "AX"
+sub = " ".join(sys.argv[1:])
 
 # print(last(sub, teks))
 print(*get_solution(sub, "Question.txt", 0.1), sep = '')
