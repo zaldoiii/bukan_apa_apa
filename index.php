@@ -12,9 +12,11 @@ $dotenv->load();
 $configs =  [
 	'settings' => ['displayErrorDetails' => true],
 ];
+
 $app = new Slim\App($configs);
 
-$app->get('/', function ($request, $response) {
+$app->get('/', function ($request, $response)
+{
 	return "Sedang mencoba";
 };
 
