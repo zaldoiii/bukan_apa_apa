@@ -1,7 +1,8 @@
 import sys
 
-def last(pattern, text):
+sub = " ".join(sys.argv[1:])
 
+def last(pattern, text):
     table = {}
     for i, c in enumerate(text):
 	    table[c] = -1
@@ -40,14 +41,10 @@ def get_solution(pattern, dataset, parameter):
 	j = 1
 	for data in f:
 		case = boyer_moore(pattern, data)
-		if(case != -1):
+		if (case != -1):
 			percen = len(pattern)/(len(data)-1)
 			if(percen > parameter):
 				match.append(data)
 	return match
 
-#teks = "Apakah ada artikel yang dipublikasikan tentang Python yang dapat saya rujuk?"
-sub = " ".join(sys.argv[1:])
-
-# print(last(sub, teks))
-print(*get_solution(sub, "Question.txt", 0.1), sep = '')
+print(*get_solution(sub, "Question.txt", 0.9), sep = '')
