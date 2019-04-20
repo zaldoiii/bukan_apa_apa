@@ -44,7 +44,7 @@ $app->post('/', function ($request, $response)
 		{
 			if ($event['message']['type'] == 'text')
 			{
-				$inputMessage = 'python ccd.py ' . $event['message']['text'];
+				$inputMessage = 'python BM.py ' . $event['message']['text'];
 				$outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
 				
 				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
