@@ -42,10 +42,9 @@ $app->post('/', function ($request, $response)
 	{
 		if ($event['type'] == 'message')
 		{
-			$pesan_datang = $event['message'];
 			if ($event['message']['type'] == 'text')
 			{
-				$inputMessage = 'python BM.py ' . $pesan_datang;
+				$inputMessage = 'python BM.py ' . $event['message']['text'];
 				$outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
 				
 				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
