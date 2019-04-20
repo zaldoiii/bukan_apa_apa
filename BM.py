@@ -2,6 +2,25 @@ import sys
 
 sub = " ".join(sys.argv[1:])
 
+pertanyaan = []
+pertanyaan.append("Apa itu Python?")
+pertanyaan.append("Apa itu Python Software Foundation?")
+pertanyaan.append("Apakah ada batasan hak cipta untuk penggunaan Python?")
+pertanyaan.append("Mengapa Python dibuat?")
+pertanyaan.append("Apa gunanya Python?")
+pertanyaan.append("Bagaimana cara mendapatkan salinan sumber Python?")
+pertanyaan.append("Bagaimana saya mendapatkan dokumentasi tentang Python?")
+pertanyaan.append("Apakah ada tutorial Python?")
+pertanyaan.append("Apakah ada newsgroup atau mailing list yang dikhususkan untuk Python?")
+pertanyaan.append("Bagaimana cara saya mendapatkan versi beta Python?")
+pertanyaan.append("Bagaimana cara mengirim laporan bug untuk Python?")
+pertanyaan.append("Apakah ada artikel yang dipublikasikan tentang Python yang dapat saya rujuk?")
+pertanyaan.append("Apakah ada buku tentang Python?")
+pertanyaan.append("Di mana www.python.org berada?")
+pertanyaan.append("Mengapa disebut Python?")
+pertanyaan.append("Apakah saya harus menyukai \"Monty Python’s Flying Circus\"?")
+
+
 def last(pattern, text):
     table = {}
     for i, c in enumerate(text):
@@ -34,12 +53,11 @@ def boyer_moore(pattern, text):
          pattern_index = pattern_length -1
     return -1
 
-def get_solution(pattern, dataset, parameter): 
-	f = open(dataset, "r")
+def get_solution(pattern, dataset, parameter):
 	match = []
 	i = 1
 	j = 1
-	for data in f:
+	for data in dataset:
 		case = boyer_moore(pattern, data)
 		if (case != -1):
 			percen = len(pattern)/(len(data)-1)
@@ -47,4 +65,4 @@ def get_solution(pattern, dataset, parameter):
 				match.append(data)
 	return match
 
-print(*get_solution(sub, "Question.txt", 0.9), sep = '')
+print(*get_solution(sub, pertanyaan, 0.9), sep = '')
