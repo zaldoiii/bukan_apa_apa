@@ -65,4 +65,5 @@ def get_solution(pattern, dataset, parameter):
 				match.append(data)
 	return match
 
-print(*get_solution(sub, pertanyaan, 0.9), sep = '')
+print(pertanyaan[0])
+#print(*get_solution(sub, pertanyaan, 0.9), sep = '')
