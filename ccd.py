@@ -1,4 +1,4 @@
 import sys
 
-sub = sys.argv[1:]
+sub = " ".join(sys.argv[1:])
 print(sub)
