@@ -44,8 +44,10 @@ $app->post('/', function ($request, $response)
 		{
 			if ($event['message']['type'] == 'text')
 			{
-				$inputMessage = 'python ccd.py ' . $event['message']['text'];
-				$outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
+				$inputMessage = $event['message']['text'];
+				$outputMessage = new TextMessageBuilder($inputMessage);
+				# $inputMessage = 'python ccd.py ' . $event['message']['text'];
+				# $outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
 			}
 			else if ($event['message']['type'] == 'sticker')
 			{
