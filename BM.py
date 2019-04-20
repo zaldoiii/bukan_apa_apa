@@ -3,6 +3,7 @@ import sys
 sub = " ".join(sys.argv[1:])
 print(sub[2])
 
+"""
 pertanyaan = []
 pertanyaan.append("Apa itu Python?")
 pertanyaan.append("Apa itu Python Software Foundation?")
@@ -20,7 +21,6 @@ pertanyaan.append("Apakah ada buku tentang Python?")
 pertanyaan.append("Di mana www.python.org berada?")
 pertanyaan.append("Mengapa disebut Python?")
 pertanyaan.append("Apakah saya harus menyukai \"Monty Python’s Flying Circus\"?")
-
 
 def last(pattern, text):
     table = {}
@@ -66,3 +66,4 @@ def get_solution(pattern, dataset, parameter):
 				match.append(data)
 	return match
 #print(*get_solution(sub, pertanyaan, 0.9), sep = '')
+"""
