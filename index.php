@@ -47,7 +47,7 @@ $app->post('/', function ($request, $response)
 			}
 			else if ($event['message']['type'] == 'sticker')
 			{
-				$inputMessage = $event['message']['sticker'];
+				$inputMessage = $event['message']['text'];
 				$outputMessage = new TextMessageBuilder("Terima kasih stikernya!");
 			}
 			$result = $bot->replyMessage($event['replyToken'], $outputMessage);
