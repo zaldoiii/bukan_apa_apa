@@ -45,15 +45,12 @@ $app->post('/', function ($request, $response)
 			$pesan_datang = $event['message'];
 			if ($event['message']['type'] == 'text')
 			{
-				$inputMessage = 'python ccd.py ' . $pesan_datang;
+				$inputMessage = 'python BM.py ' . $pesan_datang;
 				$outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
+				
+				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
+				return $result->getHTTPStatus() . ' ' . $result->getRawBody();
 			}
-			else if ($event['message']['type'] == 'sticker')
-			{
-				$outputMessage = new TextMessageBuilder('Terima kasih stikernya!');
-			}
-			$result = $bot->replyMessage($event['replyToken'], $outputMessage);
-			return $result->getHTTPStatus() . ' ' . $result->getRawBody();
 		}
 	}
 
