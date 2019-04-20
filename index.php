@@ -40,20 +40,18 @@ $app->post('/', function ($request, $response)
 	{
 		if ($event['type'] == 'message')
 		{
-			if($event['message']['type'] == 'text')
+			if ($event['message']['type'] == 'text')
 			{
-				
-				// --------------------------------------------------------------- NOTICE ME...
-				
 				$inputMessage = 'python ccd.py ' . $event['message']['text'];
 				$outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
-				
-				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
-				return $result->getHTTPStatus() . ' ' . $result->getRawBody();
-				
-				// --------------------------------------------------------------- ...SENPAI!
-				
 			}
+			else if ($event['message']['type'] == 'sticker')
+			{
+				$inputMessage = $event['message']['sticker'];
+				$outputMessage = new TextMessageBuilder('Terima kasih stikernya :)');
+			}
+			$result = $bot->replyMessage($event['replyToken'], $outputMessage);
+			return $result->getHTTPStatus() . ' ' . $result->getRawBody();
 		}
 	}
 
