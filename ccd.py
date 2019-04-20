@@ -1,3 +1,4 @@
 import sys
 
-print(" ".join(sys.argv[1:]))
+s = sys.argv[1:]
+print(s[0])
