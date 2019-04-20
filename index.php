@@ -45,7 +45,7 @@ $app->post('/', function ($request, $response)
 			if ($event['message']['type'] == 'text')
 			{
 				$inputMessage = 'python ccd.py ' . $event['message']['text'];
-				$outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
+				$outputMessage = new TextMessageBuilder(exec($inputMessage));
 				
 				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
 				return $result->getHTTPStatus() . ' ' . $result->getRawBody();
