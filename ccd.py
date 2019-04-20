@@ -20,4 +20,4 @@ pertanyaan.append("Di mana www.python.org berada?")
 pertanyaan.append("Mengapa disebut Python?")
 pertanyaan.append("Apakah saya harus menyukai \"Monty Python’s Flying Circus\"?")
 
-print(str(pertanyaan[0]))
+print(100)
