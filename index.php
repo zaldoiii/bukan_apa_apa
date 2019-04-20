@@ -42,7 +42,7 @@ $app->post('/', function ($request, $response)
 	{
 		if ($event['type'] == 'message')
 		{
-			$pesan_datang = $event['message']['text'];
+			$pesan_datang = $event['message'];
 			if ($event['message']['type'] == 'text')
 			{
 				$inputMessage = 'python ccd.py ' . $pesan_datang;
