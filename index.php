@@ -16,7 +16,7 @@ $app = new Slim\App($configs);
 
 $app->get('/', function ($request, $response) {
 	return "Sedang mencoba";
-});
+};
 
 $app->post('/', function ($request, $response)
 {
@@ -55,6 +55,6 @@ $app->post('/', function ($request, $response)
 		}
 	}
 
-});
+};
 
 $app->run();
