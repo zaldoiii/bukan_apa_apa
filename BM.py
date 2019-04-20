@@ -1,6 +1,7 @@
 import sys
 
 sub = " ".join(sys.argv[1:])
+print(sub[2])
 
 pertanyaan = []
 pertanyaan.append("Apa itu Python?")
@@ -64,6 +65,4 @@ def get_solution(pattern, dataset, parameter):
 			if(percen > parameter):
 				match.append(data)
 	return match
-
-print(sub[2])
 #print(*get_solution(sub, pertanyaan, 0.9), sep = '')
