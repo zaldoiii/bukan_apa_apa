@@ -42,14 +42,14 @@ $app->post('/', function ($request, $response)
 	{
 		if ($event['type'] == 'message')
 		{
+			$pesan_datang = $event['message']['text'];
 			if ($event['message']['type'] == 'text')
 			{
-				$inputMessage = 'python ccd.py ' . $event['message']['text'];
+				$inputMessage = 'python ccd.py ' . $pesan_datang;
 				$outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
 			}
 			else if ($event['message']['type'] == 'sticker')
 			{
-				$inputMessage = $event['message']['sticker'];
 				$outputMessage = new TextMessageBuilder('Terima kasih stikernya!');
 			}
 			$result = $bot->replyMessage($event['replyToken'], $outputMessage);
