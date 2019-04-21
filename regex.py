@@ -1,4 +1,7 @@
+from nltk.corpus import stopwords, wordnet
+from nltk.tokenize import word_tokenize
 import sys
+import re
 
 pattern = sys.argv[1:]
 
@@ -73,8 +76,6 @@ jawaban.append("Mungkin lebih baik untuk mengutip buku favorit Anda tentang Pyth
 jawaban.append("Banyak, lihat wiki python.org di https://wiki.python.org/moin/PythonBooks.")
 jawaban.append("Infrastruktur proyek Python terletak di seluruh dunia dan dikelola oleh Tim Infrastruktur Python.")
 jawaban.append("Guido van Rossum membaca skrip yang diterbitkan dari \"Monty Python\'s Flying Circus\"dan memutuskan untuk menyebutnya Python.")
-
-import re
 
 def cari_regex(pattern, Q, A):
 	matched = []
