@@ -1,3 +1,5 @@
+from nltk.corpus import stopwords, wordnet
+from nltk.tokenize import word_tokenize
 import sys
 import re
 
