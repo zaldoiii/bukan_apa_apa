@@ -76,16 +76,17 @@ jawaban.append("Guido van Rossum membaca skrip yang diterbitkan dari \"Monty Pyt
 
 import re
 
-matched = []
-lowerPattern = [L.lower() for L in pattern]
-final_pattern_1 = '[\s\S]*' + ' '.join(lowerPattern) + '[\s\S]*'
-final_pattern_2 = '[\s\S]*'.join(lowerPattern)
+def cari_regex(pattern, Q, A):
+	matched = []
+	lowerPattern = [L.lower() for L in pattern]
+	final_pattern_1 = '[\s\S]*' + ' '.join(lowerPattern) + '[\s\S]*'
+	final_pattern_2 = '[\s\S]*'.join(lowerPattern)
 
-if (len(pattern) <= 2):
-	print("Kata kunci terlalu sedikit")
+	if (len(pattern) <= 2):
+		print("Kata kunci terlalu sedikit")
 
-else:
-	for i in range(0, len(pertanyaan)-1):
-		match = (re.search(final_pattern_1, pertanyaan[i].lower()) or re.search(final_pattern_2, pertanyaan[i].lower()))
-		if (match):
-			print(jawaban[i])
+	else:
+		for i in range(0, len(Q)-1):
+			match = (re.search(final_pattern_1, Q[i].lower()) or re.search(final_pattern_2, Q[i].lower()))
+			if (match):
+				print(A[i])
