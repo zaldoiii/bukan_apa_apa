@@ -42,7 +42,7 @@ $app->post('/', function ($request, $response)
 		{
 			if($event['message']['type'] == 'text')
 			{
-				$cmd = "python regex.py ".$event['message']['text'];
+				$cmd = "python fajar.py ".$event['message']['text'];
 				$inputMessage = shell_exec($cmd);
 				$outputMessage = new TextMessageBuilder($inputMessage);
 				
