@@ -36,7 +36,7 @@ pertanyaan.append("Bagaimana cara mengirim laporan bug untuk Python?")
 pertanyaan.append("Apakah ada artikel yang dipublikasikan tentang Python yang dapat saya pelajari?")
 pertanyaan.append("Apakah ada buku tentang Python?")
 pertanyaan.append("Di mana www.python.org berada?")
-pertanyaan.append("Mengapa disebut Python?")
+pertanyaan.append("Bagaimana asal usul nama Python?")
 
 jawaban = []
 jawaban.append("Rinaldi Munir")
