@@ -90,3 +90,5 @@ def cari_regex(pattern, Q, A):
 			match = (re.search(final_pattern_1, Q[i].lower()) or re.search(final_pattern_2, Q[i].lower()))
 			if (match):
 				print(A[i])
+
+cari_regex(pattern, pertanyaan, jawaban)
