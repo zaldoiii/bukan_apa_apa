@@ -2,6 +2,19 @@ import sys
 import re
 
 pertanyaan = []
+
+pertanyaan.append("Selamat pagi")
+pertanyaan.append("Selamat siang")
+pertanyaan.append("Selamat sore")
+pertanyaan.append("Selamat malam")
+pertanyaan.append("Tolong perkenalkan dirimu!")
+pertanyaan.append("Eh eh aku mau cerita deh")
+pertanyaan.append("Apakah kamu nyata?")
+pertanyaan.append("Bagaimana dirimu dibuat?")
+pertanyaan.append("Bagaimana keadaan hari ini?")
+pertanyaan.append("Terima kasih")
+pertanyaan.append("Senang berinteraksi denganmu")
+
 pertanyaan.append("Siapa nama koordinator dosen mata kuliah strategi algoritma 2018/2019?")
 pertanyaan.append("Siapa nama koordas strategi algoritma?")
 pertanyaan.append("Berapa jumlah SKS minimal untuk lulus S1 di ITB?")
@@ -37,7 +50,21 @@ pertanyaan.append("Apakah ada buku tentang Python?")
 pertanyaan.append("Di mana www.python.org berada?")
 pertanyaan.append("Bagaimana asal usul nama Python?")
 
+
 jawaban = []
+
+jawaban.append("Selamat pagi juga")
+jawaban.append("Selamat siang juga")
+jawaban.append("Selamat sore juga")
+jawaban.append("Selamat malam juga")
+jawaban.append("Namaku bot_kill, aku adalah karakter yang siap kamu ajak berbicara kapanpun namun kadang tidak nyambung obrolannya hehehe")
+jawaban.append("Boleh kok sini cerita aja, kenapa tuh emangnya?")
+jawaban.append("Tidak, aku hanyalah karakter yang sudah terprogram")
+jawaban.append("Menggunakan bahasa pemrograman Python dan PHP")
+jawaban.append("Aku harap cuaca hari ini cerah dan dosen tidak masuk")
+jawaban.append("Sama-sama")
+jawaban.append("Wah terima kasih, semoga harimu bahagia")
+
 jawaban.append("Rinaldi Munir")
 jawaban.append("Kevin Andrian Liwinata")
 jawaban.append("144 SKS")
