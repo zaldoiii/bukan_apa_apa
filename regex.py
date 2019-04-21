@@ -94,21 +94,39 @@ def cari_regex(pattern, Q, A):
 
 # KMP
 def fail_kmp(pattern):
-    m = len(pattern)
-    x = [0]*m
-    j = 0
-    i = 1
-    while i < m:
-        if pattern[i] == pattern[j]:
-            j += 1
-            x[i] = j
-            i += 1
-        elif j != 0:
-            j = x[j-1]
-        else:
-            x[i] = 0
-            i += 1
-    return x
+	m = len(pattern)
+	x = [0]*m
+	j = 0
+	i = 1
+	while i < m:
+		if pattern[i] == pattern[j]:
+			j += 1
+			x[i] = j
+			i += 1
+		elif j != 0:
+			j = x[j-1]
+		else:
+			x[i] = 0
+			i += 1
+	return x
+
+def kmp(text, pattern):
+	n = len(text)
+	m = len(pattern)
+	gagal = fail_kmp(pattern)
+	i = 0
+	j = 0
+	while i < n:
+		if text[i] == pattern[j]:
+			if j == m - 1:
+				return i - m + 1
+			i += 1
+			j += 1
+		elif j != 0:
+			j = gagal[j-1]
+		else:
+			i += 1
+	return -1
 # ---------------------------------- #
 
 cari_regex(pattern, pertanyaan, jawaban)
