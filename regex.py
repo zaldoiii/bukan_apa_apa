@@ -75,7 +75,7 @@ jawaban.append("Banyak, lihat wiki python.org di https://wiki.python.org/moin/Py
 jawaban.append("Infrastruktur proyek Python terletak di seluruh dunia dan dikelola oleh Tim Infrastruktur Python.")
 jawaban.append("Guido van Rossum membaca skrip yang diterbitkan dari \"Monty Python\'s Flying Circus\"dan memutuskan untuk menyebutnya Python.")
 
-# Regex
+
 def cari_regex(pattern, Q, A):
 	matched = []
 	lowerPattern = [L.lower() for L in pattern]
@@ -90,9 +90,8 @@ def cari_regex(pattern, Q, A):
 			match = (re.search(final_pattern_1, Q[i].lower()) or re.search(final_pattern_2, Q[i].lower()))
 			if (match):
 				print(A[i])
-# ------------------------------------------------------------------------------------------------------------------- #
 
-# KMP
+
 def fail_kmp(pattern):
 	m = len(pattern)
 	x = [0]*m
@@ -127,9 +126,7 @@ def kmp(text, pattern):
 		else:
 			i += 1
 	return -1
-# ---------------------------------------------- #
 
-# BM
 def last(pattern, text):
 	table = {}
 	for i, c in enumerate(text):
@@ -160,6 +157,5 @@ def boyer_moore(pattern, text):
 			index = index + pattern_length - min(pattern_index, 1+ lo)
 			pattern_index = pattern_length -1
 	return -1
-# -------------------------------------------------------------------------------- #
 
 cari_regex(pattern, pertanyaan, jawaban)
