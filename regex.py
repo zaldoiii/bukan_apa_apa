@@ -86,7 +86,7 @@ def cari_regex(pattern, Q, A):
 		print("Kata kunci terlalu sedikit")
 
 	else:
-		for i in range(0, len(Q)-1):
+		for i in range(0, len(Q)):
 			match = (re.search(final_pattern_1, Q[i].lower()) or re.search(final_pattern_2, Q[i].lower()))
 			if (match):
 				print(A[i])
