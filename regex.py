@@ -108,21 +108,6 @@ def fail_kmp(pattern):
         else:
             x[i] = 0
             i += 1
-    return xdef fail_kmp(pattern):
-    m = len(pattern)
-    x = [0]*m
-    j = 0
-    i = 1
-    while i < m:
-        if pattern[i] == pattern[j]:
-            j += 1
-            x[i] = j
-            i += 1
-        elif j != 0:
-            j = x[j-1]
-        else:
-            x[i] = 0
-            i += 1
     return x
 # ---------------------------------- #
 
