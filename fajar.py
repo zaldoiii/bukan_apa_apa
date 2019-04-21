@@ -1,12 +1,7 @@
 import sys
 
 
-s = sys.argv[1:] 
-
-
-pattern = ".*"
-for i in range(1,len(sys.argv)):
-    pattern = pattern + sys.argv[i] + "." + "*" 
+pattern = sys.argv[1:]
 
 #import library regex
 import re
@@ -84,9 +79,17 @@ jawaban.append("Infrastruktur proyek Python terletak di seluruh dunia dan dikelo
 jawaban.append("Guido van Rossum membaca skrip yang diterbitkan dari \"Monty Python\'s Flying Circus\" dan memutuskan untuk memanggilnya Python.")
 
 
-for i in range(0,len(pertanyaan)-1):
-    pat = pattern.lower()
-    t = pertanyaan[i].lower()
-    x = re.findall(pat,t)
-    if(x):
-        print(jawaban[i])
+
+matched = []
+lowerPattern = [L.lower() for L in pattern]
+final_pattern_1 = '[\s\S]*' + ' '.join(lowerPattern) + '[\s\S]*'
+final_pattern_2 = '[\s\S]*'.join(lowerPattern)
+
+if (len(pattern) <= 2):
+	print("Kata kunci terlalu sedikit")
+
+else:
+	for i in range(0, len(pertanyaan)-1):
+		match = (re.search(final_pattern_1, pertanyaan[i].lower()) or re.search(final_pattern_2, pertanyaan[i].lower()))
+		if (match):
+			print(jawaban[i])
