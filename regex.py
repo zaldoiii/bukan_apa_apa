@@ -135,27 +135,4 @@ def last(pattern, text):
 		table[c] = i
 	return table
 
-def boyer_moore(pattern, text):
-	pattern_length = len(pattern)
-	text_length = len(text)
-	if pattern_length > text_length:
-		return -1
-
-	table = last(pattern,text)
-	index = pattern_length - 1
-	pattern_index = pattern_length - 1
-
-	while index < text_length:
-		if pattern[pattern_index] == text[index]:
-			if pattern_index == 0:
-				return index
-			else:
-				pattern_index -= 1
-				index -= 1
-		else:
-			lo = table[text[index]]
-			index = index + pattern_length - min(pattern_index, 1+ lo)
-			pattern_index = pattern_length -1
-	return -1
-
 cari_regex(pattern, pertanyaan, jawaban)
