@@ -75,6 +75,7 @@ jawaban.append("Banyak, lihat wiki python.org di https://wiki.python.org/moin/Py
 jawaban.append("Infrastruktur proyek Python terletak di seluruh dunia dan dikelola oleh Tim Infrastruktur Python.")
 jawaban.append("Guido van Rossum membaca skrip yang diterbitkan dari \"Monty Python\'s Flying Circus\"dan memutuskan untuk menyebutnya Python.")
 
+# Regex
 def cari_regex(pattern, Q, A):
 	matched = []
 	lowerPattern = [L.lower() for L in pattern]
@@ -89,5 +90,76 @@ def cari_regex(pattern, Q, A):
 			match = (re.search(final_pattern_1, Q[i].lower()) or re.search(final_pattern_2, Q[i].lower()))
 			if (match):
 				print(A[i])
+# --------------------------------------------------------------------------------------------------------- #
+				
+# Boyer Moore
+def last(pattern, text):
+    table = {}
+    for i, c in enumerate(text):
+        table[c] = -1
+    for i, c in enumerate(pattern):
+        table[c] = i
+    return table
+
+def boyer_moore(pattern, text):
+    pattern_length = len(pattern)
+    text_length = len(text)
+    if pattern_length > text_length:
+        return -1
+
+    table = last(pattern,text)
+    index = pattern_length - 1
+    pattern_index = pattern_length - 1
+
+    while index < text_length:
+        if pattern[pattern_index] == text[index]:
+            if pattern_index == 0:
+                return index
+            else:
+                pattern_index -= 1
+                index -= 1
+        else:
+         lo = table[text[index]]
+         index = index + pattern_length - min(pattern_index, 1+ lo)
+         pattern_index = pattern_length -1
+    return -1
+# ------------------------------------------------------------------ #
+
+# Knuth Morris Pratt
+def kmp(text, pattern):
+    n = len(text)
+    m = len(pattern)
+    gagal = fail_kmp(pattern)
+    i = 0
+    j = 0
+    while i < n:
+        if text[i] == pattern[j]:
+            if j == m - 1:
+                return i - m + 1
+            i += 1
+            j += 1
+        elif j != 0:
+            j = gagal[j-1]
+        else:
+            i += 1
+    return -1
+
+def fail_kmp(pattern):
+    m = len(pattern)
+    x = [0]*m
+    j = 0
+    i = 1
+    while i < m:
+        if pattern[i] == pattern[j]:
+            j += 1
+            x[i] = j
+            i += 1
+        elif j != 0:
+            j = x[j-1]
+        else:
+            x[i] = 0
+            i += 1
+    return x
+# --------------------------------- #
 
 cari_regex(pattern, pertanyaan, jawaban)
