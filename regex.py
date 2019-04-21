@@ -129,6 +129,4 @@ def kmp(text, pattern):
 	return -1
 # ---------------------------------- #
 
-# BM
-
 cari_regex(pattern, pertanyaan, jawaban)
