@@ -1,55 +1,59 @@
 <?php
 
-require_once('./line_class.php');
+require 'vendor/autoload.php';
 
-$channelAccessToken = 'oV1G0/52nBWW/xRdzTCrrGumF2BJy1xR1CIspX8PRdrMSrFYXXYjkAN9t8Mau5yvpOcCiWL44U4fXcqbjw/6Xkrx8ZwxsCZgpfwVrYP4H+V0EfQ99nl0LkmAMAJg6Kt9qonVvXDqw6X2r1XQt4G8nAdB04t89/1O/w1cDnyilFU='; //sesuaikan 
-$channelSecret = 'e6f653879f4b7225b5554ecb1c430329';//sesuaikan
+use LINE\LINEBot\SignatureValidator as SignatureValidator;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder as TextMessageBuilder;
+foreach (glob("handler/*.php") as $handler){include $handler;}
 
-$client = new LINEBotTiny($channelAccessToken, $channelSecret);
+$dotenv = new Dotenv\Dotenv('env');
+$dotenv->load();
 
-$userId 	= $client->parseEvents()[0]['source']['userId'];
-$replyToken = $client->parseEvents()[0]['replyToken'];
-$timestamp	= $client->parseEvents()[0]['timestamp'];
+$configs =  [
+	'settings' => ['displayErrorDetails' => true],
+];
 
-$message 	= $client->parseEvents()[0]['message'];
-$messageid 	= $client->parseEvents()[0]['message']['id'];
+$app = new Slim\App($configs);
 
-$profil = $client->profil($userId);
-
-$pesan_datang = $message['text'];
-
-if($message['type'] == 'text')
+$app->get('/', function ($request, $response)
 {
-	$cmd_1 = 'python ccd.py ' . $pesan_datang;
-	$cmd_2 = shell_exec($cmd_1);
-	$balas = array (
-		'replyToken' => $replyToken,
-		'messages' => array(
-			array (
-				'type' => 'text',
-				'text' => $cmd_2
-			)
-		)
-	);
-}
+	return "Sedang mencoba";
+});
 
-else if($message['type']=='sticker')
+$app->post('/', function ($request, $response)
 {
-	$balas = array (
-		'replyToken' => $replyToken,
-		'messages' => array (
-			array (
-				'type' => 'text',
-				'text' => "Terimakasih stikernya!"
-			)
-		)
-	);
-}
- 
-$result =  json_encode($balas);
+	$body 	   = file_get_contents('php://input');
+	$signature = $_SERVER['HTTP_X_LINE_SIGNATURE'];
+	file_put_contents('php://stderr', 'Body: '.$body);
+	
+	if (empty($signature)){
+		return $response->withStatus(400, 'Signature not set');
+	}
+	
+	if($_ENV['PASS_SIGNATURE'] == false && ! SignatureValidator::validateSignature($body, $_ENV['CHANNEL_SECRET'], $signature)){
+		return $response->withStatus(400, 'Invalid signature');
+	}
+	
+	$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_ENV['CHANNEL_ACCESS_TOKEN']);
+	$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $_ENV['CHANNEL_SECRET']]);
 
-file_put_contents('./balasan.json',$result);
+	$data = json_decode($body, true);
+	foreach ($data['events'] as $event)
+	{
+		if ($event['type'] == 'message')
+		{
+			if ($event['message']['type'] == 'text')
+			{
+				$cmd = 'python ccd.py ' . $event['message']['text'];
+				$inputMessage = shell_exec($cmd);
+				$outputMessage = new TextMessageBuilder(shell_exec($inputMessage));
+				
+				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
+				return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+			}
+		}
+	}
 
-$client->replyMessage($balas);
+});
 
-?>
+$app->run();
