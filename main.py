@@ -1,5 +1,6 @@
 import sys
 import re
+import nltk
 
 pattern = sys.argv[1:]
 
