@@ -131,7 +131,7 @@ def kmp(text, pattern):
 
 # BM
 def last(pattern, text):
-	table = {}
+	table = []
 	for i, c in enumerate(text):
 		table[c] = -1
 	for i, c in enumerate(pattern):
