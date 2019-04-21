@@ -15,7 +15,7 @@ $configs =  [
 $app = new Slim\App($configs);
 
 $app->get('/', function ($request, $response) {
-	return "succesfully deployed";
+	return "Sedang mencoba";
 });
 
 $app->post('/', function ($request, $response)
@@ -42,16 +42,12 @@ $app->post('/', function ($request, $response)
 		{
 			if($event['message']['type'] == 'text')
 			{
-				
-				// --------------------------------------------------------------- NOTICE ME...
 				$cmd = "python regex.py ".$event['message']['text'];
 				$inputMessage = shell_exec($cmd);
 				$outputMessage = new TextMessageBuilder($inputMessage);
 				
 				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
 				return $result->getHTTPStatus() . ' ' . $result->getRawBody();
-				
-				// --------------------------------------------------------------- ...SENPAI!
 				
 			}
 		}
