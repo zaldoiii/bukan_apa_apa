@@ -12,12 +12,10 @@ $dotenv->load();
 $configs =  [
 	'settings' => ['displayErrorDetails' => true],
 ];
-
 $app = new Slim\App($configs);
 
-$app->get('/', function ($request, $response)
-{
-	return "Sedang mencoba";
+$app->get('/', function ($request, $response) {
+	return "succesfully deployed";
 });
 
 $app->post('/', function ($request, $response)
@@ -42,14 +40,19 @@ $app->post('/', function ($request, $response)
 	{
 		if ($event['type'] == 'message')
 		{
-			if ($event['message']['type'] == 'text')
+			if($event['message']['type'] == 'text')
 			{
-				$cmd = "python RegEx.py ".$event['message']['text'];
+				
+				// --------------------------------------------------------------- NOTICE ME...
+				$cmd = "python regex.py ".$event['message']['text'];
 				$inputMessage = shell_exec($cmd);
 				$outputMessage = new TextMessageBuilder($inputMessage);
 				
 				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
 				return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+				
+				// --------------------------------------------------------------- ...SENPAI!
+				
 			}
 		}
 	}
@@ -57,3 +60,5 @@ $app->post('/', function ($request, $response)
 });
 
 $app->run();
+
+?>
